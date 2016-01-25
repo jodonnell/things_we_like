@@ -32,5 +32,5 @@ class HelloWorld extends React.Component {
 
 ReactDOM.render(
   <HelloWorld />,
-  document.getElementsByTagName('main')[0]
+  document.getElementById('root')
 )
