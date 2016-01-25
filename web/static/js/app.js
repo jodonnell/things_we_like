@@ -20,17 +20,12 @@ import "phoenix_html"
 
 // import socket from "./socket"
 
-
+import socket from "./socket"
 import React from "react";
 import ReactDOM from "react-dom";
-
-class HelloWorld extends React.Component {
-  render() {
-    return (<h1>Hello world</h1>);
-  }
-}
+import Categories from "./Categories";
 
 ReactDOM.render(
-  <HelloWorld />,
+    <Categories categories={[{name: 'sugar'}]} />,
   document.getElementById('root')
 )
