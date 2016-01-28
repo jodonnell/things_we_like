@@ -1,5 +1,5 @@
-import React from "react";
-import Category from "./Category";
+import React from 'react';
+import Category from './Category';
 
 export default class Categories extends React.Component {
   render() {
