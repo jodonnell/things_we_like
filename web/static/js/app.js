@@ -18,7 +18,7 @@ import 'phoenix_html';
 // Local files can be imported directly using relative
 // paths "./socket" or full ones "web/static/js/socket".
 
-// import socket from "./socket"
+import socket from './socket';  //eslint-disable-line no-unused-vars
 
 import React from 'react';
 import ReactDOM from 'react-dom';
