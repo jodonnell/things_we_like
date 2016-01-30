@@ -19,6 +19,13 @@ defmodule ThingsWeLike.Router do
     get "/", PageController, :index
   end
 
+
+  scope "/api", ThingsWeLike do
+    pipe_through :api
+
+    resources "/category", CategoryController
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", ThingsWeLike do
   #   pipe_through :api
