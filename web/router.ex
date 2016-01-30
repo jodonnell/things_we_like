@@ -20,11 +20,7 @@ defmodule ThingsWeLike.Router do
   end
 
 
-  scope "/api", ThingsWeLike do
-    pipe_through :api
-
-    resources "/category", CategoryController
-  end
+  resources "/categories", ThingsWeLike.CategoryController, except: [:new, :edit]
 
   # Other scopes may use custom stacks.
   # scope "/api", ThingsWeLike do

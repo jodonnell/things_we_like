@@ -6,9 +6,9 @@ export default class Categories extends React.Component {
     super(props);
     this.state = {categories: []};
 
-    $.get('/api/category', (categories) => {
+    $.get('/categories', (categories) => {
       this.setState({
-        categories: categories
+        categories: categories["data"]
       });
     });
   }
