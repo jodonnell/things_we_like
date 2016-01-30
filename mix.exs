@@ -10,6 +10,7 @@ defmodule ThingsWeLike.Mixfile do
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      aliases: aliases,
+     default_task: "default",
      deps: deps]
   end
 

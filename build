@@ -1,1 +1,1 @@
-MIX_ENV=test mix default
+MIX_ENV=test mix
