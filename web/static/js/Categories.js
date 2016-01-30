@@ -8,7 +8,7 @@ export default class Categories extends React.Component {
 
     $.get('/categories', (categories) => {
       this.setState({
-        categories: categories["data"]
+        categories: categories['data']
       });
     });
   }
