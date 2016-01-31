@@ -4,8 +4,12 @@ import Category from './Category';
 export default class Categories extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {categories: []};
+    this.state = {categories: null};
 
+    this.getAllCategories();
+  }
+
+  getAllCategories() {
     $.get('/categories', (categories) => {
       this.setState({
         categories: categories['data']
@@ -14,7 +18,7 @@ export default class Categories extends React.Component {
   }
 
   render() {
-    if (this.state.categories.length === 0) {
+    if (this.state.categories === null) {
       return this.loading();
     }
     else {
@@ -27,10 +31,28 @@ export default class Categories extends React.Component {
   }
 
   showCategories() {
-    return (<ul className="categories">{this.state.categories.map(category =>
-                                                                  <li className="category">
+    return (<div><ul className="categories">{this.state.categories.map(category =>
+                                                                  <li key={category.id} className="category">
                                                                   <Category name={category.name} />
                                                                   </li>
-                                                                 )}</ul>);
+                                                                      )}</ul>
+            <label htmlFor="add_category">New Category</label>
+            <input id="add_category" type="text" onKeyPress={this.checkEnter.bind(this)} />
+            <input type="submit" value="Add" onClick={this.addCategory.bind(this)} />
+            </div>
+           );
   }
+
+  addCategory() {
+    $.post('/categories', {category: {name: $('#add_category').val()}}, () => {
+      this.getAllCategories();
+    });
+  }
+
+  checkEnter(e) {
+    if(e.key === 'Enter') {
+      this.addCategory();
+    }
+  }
+
 }
