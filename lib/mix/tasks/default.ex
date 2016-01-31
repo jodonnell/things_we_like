@@ -15,5 +15,6 @@ defmodule Mix.Tasks.Default do
     #Mix.env :test
     Mix.Task.run "jslint", []
     Mix.Task.run "test", []
+    Mix.Task.run "jstest", []
   end
 end
