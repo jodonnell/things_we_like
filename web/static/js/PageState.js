@@ -1,10 +1,12 @@
 import React from 'react';
 import Categories from './Categories';
+import Likes from './Likes';
 
 export default class PageState extends React.Component {
   constructor(props) {
     super(props);
-    this.showCategories();
+
+    this.state = {categories: true, likes: false};
   }
 
   showCategories() {
@@ -12,7 +14,6 @@ export default class PageState extends React.Component {
       categories: true,
       likes: false
     });
-
   }
 
   showLikes() {
@@ -24,10 +25,22 @@ export default class PageState extends React.Component {
   }
 
   render() {
-    return (<Categories onCategorySelect={this.categorySelected.bind(this)} />);
+    if (this.state.categories) {
+      return (<Categories onCategorySelect={this.categorySelected.bind(this)} />);
+    }
+    else if (this.state.likes) {
+      return (<Likes onBackClicked={this.backToCategories.bind(this)} category={this.currentCategory} />);
+    }
   }
 
-  categorySelected() {
+  categorySelected(category) {
     this.showLikes();
+    this.currentCategory = category;
   }
+
+  backToCategories() {
+    this.showCategories();
+    this.currentCategory = null;
+  }
+
 }

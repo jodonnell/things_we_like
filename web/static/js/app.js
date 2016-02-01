@@ -26,4 +26,4 @@ import PageState from './PageState';
 
 
 
-ReactDOM.render(<PageState  />, document.getElementById('root'));
+ReactDOM.render(<PageState />, document.getElementById('root'));
