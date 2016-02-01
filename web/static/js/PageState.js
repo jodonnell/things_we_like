@@ -1,25 +1,25 @@
 import React from 'react';
 import Categories from './Categories';
-import Likes from './Likes';
+import Opinions from './Opinions';
 
 export default class PageState extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {categories: true, likes: false};
+    this.state = {categories: true, opinions: false};
   }
 
   showCategories() {
     this.setState({
       categories: true,
-      likes: false
+      opinions: false
     });
   }
 
-  showLikes() {
+  showOpinions() {
     this.setState({
       categories: false,
-      likes: true
+      opinions: true
     });
 
   }
@@ -28,13 +28,13 @@ export default class PageState extends React.Component {
     if (this.state.categories) {
       return (<Categories onCategorySelect={this.categorySelected.bind(this)} />);
     }
-    else if (this.state.likes) {
-      return (<Likes onBackClicked={this.backToCategories.bind(this)} category={this.currentCategory} />);
+    else if (this.state.opinions) {
+      return (<Opinions onBackClicked={this.backToCategories.bind(this)} category={this.currentCategory} />);
     }
   }
 
   categorySelected(category) {
-    this.showLikes();
+    this.showOpinions();
     this.currentCategory = category;
   }
 

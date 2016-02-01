@@ -1,7 +1,6 @@
 import React from 'react';
 
-
-export default class Categories extends React.Component {
+export default class Opinions extends React.Component {
   constructor(props) {
     super(props);
   }
