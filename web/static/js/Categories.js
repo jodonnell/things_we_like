@@ -44,7 +44,14 @@ export default class Categories extends React.Component {
   }
 
   addCategory() {
-    $.post('/categories', {category: {name: $('#add_category').val()}}, () => {
+    const newCategory = $('#add_category').val();
+    $('#add_category').val('');
+
+    if (newCategory.length === 0) {
+      return;
+    }
+
+    $.post('/categories', {category: {name: newCategory}}, () => {
       this.getAllCategories();
     });
   }

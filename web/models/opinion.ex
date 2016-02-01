@@ -9,7 +9,7 @@ defmodule ThingsWeLike.Opinion do
     timestamps
   end
 
-  @required_fields ~w(name like)
+  @required_fields ~w(name like category_id)
   @optional_fields ~w()
 
   @doc """
