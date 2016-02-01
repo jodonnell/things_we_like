@@ -22,6 +22,8 @@ import socket from './socket';  //eslint-disable-line no-unused-vars
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Categories from './Categories';
+import PageState from './PageState';
 
-ReactDOM.render(<Categories categories={[{name: 'sugar'}]} />, document.getElementById('root'));
+
+
+ReactDOM.render(<PageState  />, document.getElementById('root'));

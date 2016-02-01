@@ -32,9 +32,9 @@ export default class Categories extends React.Component {
 
   showCategories() {
     return (<div><ul className="categories">{this.state.categories.map(category =>
-                                                                  <li key={category.id} className="category">
-                                                                  <Category name={category.name} />
-                                                                  </li>
+                                                                       <li key={category.id} className="category" onClick={this.showCategory.bind(this)} >
+                                                                       <Category name={category.name} />
+                                                                       </li>
                                                                       )}</ul>
             <label htmlFor="add_category">New Category</label>
             <input id="add_category" type="text" onKeyPress={this.checkEnter.bind(this)} />
@@ -55,4 +55,8 @@ export default class Categories extends React.Component {
     }
   }
 
+  showCategory(e) {
+    const category = e.currentTarget.textContent;
+    this.props.onCategorySelect(category);
+  }
 }
