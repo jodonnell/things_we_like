@@ -73,7 +73,7 @@ export default class Opinions extends React.Component {
 
     const like = type === 'like';
 
-    $.post('/opinions', {opinion: {name: newOpinion, like: like, category_id: 1}}, () => {
+    $.post('/opinions', {opinion: {name: newOpinion, like: like}, category: this.props.category}, () => {
       this.getAllOpinions();
     });
   }

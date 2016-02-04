@@ -2,15 +2,25 @@ defmodule ThingsWeLike.OpinionController do
   use ThingsWeLike.Web, :controller
 
   alias ThingsWeLike.Opinion
+  alias ThingsWeLike.Category
 
   plug :scrub_params, "opinion" when action in [:create, :update]
 
-  def index(conn, _params) do
-    opinions = Repo.all(Opinion)
+  import Ecto.Query, only: [from: 2]
+
+  def index(conn, params) do
+    opinions = if Map.has_key? params, "category" do
+      filtered_opinions(params["category"])
+    else
+      Repo.all(Opinion)
+    end
+
     render(conn, "index.json", opinions: opinions)
   end
 
-  def create(conn, %{"opinion" => opinion_params}) do
+  def create(conn, params) do
+    category_id = get_category_id_by_name(params["category"])
+    opinion_params = Map.merge params["opinion"], %{"category_id" => category_id}
     changeset = Opinion.changeset(%Opinion{}, opinion_params)
 
     case Repo.insert(changeset) do
@@ -54,4 +64,16 @@ defmodule ThingsWeLike.OpinionController do
 
     send_resp(conn, :no_content, "")
   end
+
+  defp get_category_id_by_name(name) do
+    Repo.get_by!(Category, name: name).id
+  end
+
+  defp filtered_opinions(category) do
+    category_id = get_category_id_by_name(category)
+
+    query = from o in Opinion, where: o.category_id == ^category_id
+    Repo.all(query)
+  end
+
 end
