@@ -41,20 +41,6 @@ defmodule ThingsWeLike.OpinionController do
     render(conn, "show.json", opinion: opinion)
   end
 
-  def update(conn, %{"id" => id, "opinion" => opinion_params}) do
-    opinion = Repo.get!(Opinion, id)
-    changeset = Opinion.changeset(opinion, opinion_params)
-
-    case Repo.update(changeset) do
-      {:ok, opinion} ->
-        render(conn, "show.json", opinion: opinion)
-      {:error, changeset} ->
-        conn
-        |> put_status(:unprocessable_entity)
-        |> render(ThingsWeLike.ChangesetView, "error.json", changeset: changeset)
-    end
-  end
-
   def delete(conn, %{"id" => id}) do
     opinion = Repo.get!(Opinion, id)
 

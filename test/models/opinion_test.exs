@@ -3,7 +3,7 @@ defmodule ThingsWeLike.OpinionTest do
 
   alias ThingsWeLike.Opinion
 
-  @valid_attrs %{like: true, name: "some content"}
+  @valid_attrs %{like: true, name: "some content", category_id: 1}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do
